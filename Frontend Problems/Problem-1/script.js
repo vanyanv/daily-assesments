@@ -7,4 +7,21 @@ const quotes = [
   "Life is what happens when you're busy making other plans. - John Lennon",
 ];
 
-//add code here
+//generate a random quote
+const newQuote = (array) => {
+  const randomIndex = Math.floor(Math.random() * array.length);
+
+  return array[randomIndex];
+};
+
+window.onload = function () {
+  const button = document.getElementById('new-quote-btn');
+  const display = document.getElementById('quote');
+
+  button.addEventListener('click', function () {
+    //generate new  quote
+    const quote = newQuote(quotes);
+
+    display.innerText = quote;
+  });
+};
