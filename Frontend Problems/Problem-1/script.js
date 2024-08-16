@@ -36,11 +36,13 @@ const successOrFail = function (newQuote, form, input) {
   }, 1000);
 };
 
+//function that takes in a url and returns data
 const fetchData = async function (url) {
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, {});
     const data = await response.json();
-    return data.quote;
+
+    return data;
   } catch (error) {
     console.log('Error', error);
   }
@@ -56,7 +58,7 @@ window.onload = function () {
     // Generate a new quote
     // const quote = newQuote(quotes);
     const quote = await fetchData('https://api.kanye.rest');
-    display.innerText = quote;
+    display.innerText = quote.quote;
   });
 
   // Add event listener to the form submission
