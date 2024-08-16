@@ -14,6 +14,7 @@ const newQuote = (array) => {
   return array[randomIndex];
 };
 
+//creates a success or fail message depending on if a new quote was added or not
 const successOrFail = function (newQuote, form, input) {
   if (newQuote.length === 0) {
     const error = document.createElement('p');
@@ -35,15 +36,26 @@ const successOrFail = function (newQuote, form, input) {
   }, 1000);
 };
 
+const fetchData = async function (url) {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.quote;
+  } catch (error) {
+    console.log('Error', error);
+  }
+};
+
 window.onload = function () {
   const button = document.getElementById('new-quote-btn');
   const display = document.getElementById('quote');
   const form = document.getElementById('add-a-quote');
 
   // Add event listener to the button
-  button.addEventListener('click', function () {
+  button.addEventListener('click', async function () {
     // Generate a new quote
-    const quote = newQuote(quotes);
+    // const quote = newQuote(quotes);
+    const quote = await fetchData('https://api.kanye.rest');
     display.innerText = quote;
   });
 

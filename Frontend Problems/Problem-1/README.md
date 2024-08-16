@@ -15,11 +15,11 @@ The Quote Generator is a simple web application that dynamically displays quotes
 
 1. **Add More Quotes:**
 
-   - Expand the existing array of quotes with additional quotes to enhance the variety.
+   [X] Expand the existing array of quotes with additional quotes to enhance the variety.
 
 2. **Animations:**
 
    - Implement a simple fade-in animation effect when a new quote is displayed, providing a smoother user experience.
 
 3. **API Integration:**
-   - Integrate with an external quote API (such as [Quotes REST API](https://quotes.rest/)) to fetch random quotes dynamically, ensuring a fresh and diverse set of quotes with each interaction.
+   [X] Integrate with an external quote API (such as [Quotes REST API](https://quotes.rest/)) to fetch random quotes dynamically, ensuring a fresh and diverse set of quotes with each interaction.
