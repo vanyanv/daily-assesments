@@ -8,8 +8,8 @@ The Quote Generator is a simple web application that dynamically displays quotes
 
 ### MVP: Generating Quotes
 
-- **Quote Display:** The application starts with a list of predefined quotes. It displays one quote on the screen at a time.
-- **Random Quote Button:** A button is provided that, when clicked, displays a new random quote from the list.
+[x] **Quote Display:** The application starts with a list of predefined quotes. It displays one quote on the screen at a time.
+[x] **Random Quote Button:** A button is provided that, when clicked, displays a new random quote from the list.
 
 ### Required Enhancements
 

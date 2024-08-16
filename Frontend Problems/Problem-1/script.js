@@ -7,21 +7,53 @@ const quotes = [
   "Life is what happens when you're busy making other plans. - John Lennon",
 ];
 
-//generate a random quote
+// Generate a random quote
 const newQuote = (array) => {
+  if (array.length === 0) return 'No Available Quotes';
   const randomIndex = Math.floor(Math.random() * array.length);
-
   return array[randomIndex];
+};
+
+const successOrFail = function (newQuote, form, input) {
+  if (newQuote.length === 0) {
+    const error = document.createElement('p');
+    error.innerText = 'No Quote to Add';
+    form.appendChild(error);
+    setTimeout(function () {
+      error.remove();
+    }, 1000);
+    return;
+  }
+
+  quotes.push(newQuote);
+  const success = document.createElement('p');
+  success.innerText = 'Successfully Added Quote';
+  input.value = ''; // Clear the input field
+  form.appendChild(success);
+  setTimeout(function () {
+    success.remove();
+  }, 1000);
 };
 
 window.onload = function () {
   const button = document.getElementById('new-quote-btn');
   const display = document.getElementById('quote');
+  const form = document.getElementById('add-a-quote');
 
+  // Add event listener to the button
   button.addEventListener('click', function () {
-    //generate new  quote
+    // Generate a new quote
     const quote = newQuote(quotes);
-
     display.innerText = quote;
+  });
+
+  // Add event listener to the form submission
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    const newQuoteValue = document.getElementById('text').value;
+    const input = document.getElementById('text');
+    console.log('NewQuote:', newQuoteValue);
+    console.log(newQuoteValue.length);
+    successOrFail(newQuoteValue, form, input);
   });
 };
