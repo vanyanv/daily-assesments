@@ -8,7 +8,11 @@ const displayTodos = () => {
   for (let i = 0; i < todoList.length; i++) {
     const currentTodo = todoList[i];
     const li = document.createElement('li');
+    const checkbox = document.createElement('input');
+    checkbox.setAttribute('type', 'checkbox');
+
     li.innerText = currentTodo;
+    li.appendChild(checkbox);
     container.appendChild(li);
   }
 };
