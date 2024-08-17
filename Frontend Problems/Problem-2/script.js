@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputField = document.getElementById('text');
     if (newTodo.length === 0) return;
     todoList.push(newTodo);
+    //save new array to local storage
     localStorage.setItem('todos', JSON.stringify(todoList));
     inputField.value = '';
     displayTodos();
