@@ -24,7 +24,7 @@ The Interactive To-Do List is a simple web-based application that allows users t
 
   - Users can remove to-do items from the list by clicking the delete button next to each item.
 
-- **Persist Data:**
+- [x]**Persist Data:**
   - The to-do items are saved using `localStorage`, so they persist even when the page is refreshed.
 
 ### Additional Enhancements

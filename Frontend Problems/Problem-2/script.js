@@ -1,11 +1,10 @@
-let todoList = ['get a drink', 'do hw'];
+//
+let todoList = JSON.parse(localStorage.getItem('todos')) || [];
 
 const displayTodos = () => {
   console.log('running Display TODOS');
   const container = document.getElementById('todos');
-  const deleteButtons = document.querySelectorAll('button');
-  container.innerHTML = '';
-
+  container.innerText = '';
   for (let i = 0; i < todoList.length; i++) {
     const currentTodo = todoList[i];
     const li = document.createElement('li');
@@ -16,8 +15,11 @@ const displayTodos = () => {
     button.classList.add('delete');
     li.innerText = currentTodo;
     button.addEventListener('click', () => {
-      console.log(currentTodo);
-      todoList = todoList.filter((todo) => todo !== currentTodo);
+      console.log(currentTodo, i);
+      //delete the todo
+      todoList.splice(i, 1);
+      //save new todolist to local storage
+      localStorage.setItem('todos', JSON.stringify(todoList));
       displayTodos();
     });
     li.appendChild(checkbox);
@@ -28,14 +30,14 @@ const displayTodos = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('add-a-todo');
-  const deleteButton = document.getElementsByClassName('delete');
+
   form.addEventListener('submit', function (event) {
     event.preventDefault();
     const newTodo = document.getElementById('text').value;
     const inputField = document.getElementById('text');
     if (newTodo.length === 0) return;
     todoList.push(newTodo);
-    console.log(todoList);
+    localStorage.setItem('todos', JSON.stringify(todoList));
     inputField.value = '';
     displayTodos();
   });
