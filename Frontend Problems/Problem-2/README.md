@@ -16,9 +16,9 @@ The Interactive To-Do List is a simple web-based application that allows users t
 
 - The application displays a list of added to-do items with checkboxes and delete buttons.
 
-- **Mark Items as Completed:**
+-[x]**Mark Items as Completed:**
 
-  - Users can mark items as completed by checking the checkbox. Completed items will be visually distinguished.
+- Users can mark items as completed by checking the checkbox. Completed items will be visually distinguished.
 
 - **Delete Items:**
 
