@@ -7,7 +7,7 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #f0f4f8;
+  background-color: #f5f5f5; /* Light gray background */
   color: #333;
   line-height: 1.6;
   display: flex;
@@ -17,38 +17,42 @@ body {
 }
 
 .container {
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff; /* White background for container */
+  border-radius: 8px; /* Slightly rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   padding: 20px;
   width: 100%;
-  max-width: 500px;
+  max-width: 400px; /* Reduced width for a more compact look */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1,
+h2 {
+  color: #333; /* Dark gray text */
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #333;
-  text-align: center;
-  margin-bottom: 20px;
+  font-size: 1.8rem; /* Slightly smaller for better hierarchy */
+  font-weight: 600;
 }
 
 h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #444;
-  text-align: center;
-  margin-bottom: 15px;
+  font-size: 1.4rem;
+  font-weight: 500;
 }
 
 select,
 button {
   width: 100%;
   padding: 10px;
-  margin: 10px 0;
+  margin: 8px 0;
   font-size: 1rem;
-  border: 2px solid #d1d9e6;
-  border-radius: 5px;
+  border: 1px solid #dcdcdc; /* Light gray border */
+  border-radius: 4px; /* More subtle rounded corners */
   background-color: #ffffff;
   color: #333;
   cursor: pointer;
@@ -58,17 +62,17 @@ button {
 select:focus,
 button:focus {
   outline: none;
-  border-color: #4a90e2;
+  border-color: #007bff; /* Highlight border color */
 }
 
 button {
-  background-color: #4a90e2;
+  background-color: #007bff; /* Modern blue */
   color: #ffffff;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 button:hover {
-  background-color: #357abd;
+  background-color: #0056b3; /* Darker blue on hover */
 }
 
 .hidden {
@@ -77,40 +81,52 @@ button:hover {
 
 #quiz-screen {
   text-align: center;
+  width: 100%;
+}
+
+#progress-container {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
 #progress-bar {
   height: 5px;
-  background-color: #4a90e2;
-  margin-bottom: 20px;
-  border-radius: 5px;
+  background-color: #007bff; /* Matching progress bar color */
+  width: 0%;
+  border-radius: 4px;
 }
 
 #timer {
   font-size: 1.2rem;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 20px;
 }
 
 #question-container {
-  font-size: 1.3rem;
+  font-size: 1.2rem; /* Adjusted font size for modern look */
   margin-bottom: 20px;
 }
 
 #answers-container {
   display: flex;
   flex-direction: column;
+  align-items: center; /* Center-aligns buttons */
 }
 
 #answers-container label {
   display: block;
-  background-color: #f4f6f8;
-  border: 2px solid #d1d9e6;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
+  background-color: #ffffff; /* White background */
+  border: 1px solid #dcdcdc; /* Light gray border */
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
+  width: 100%; /* Ensures labels span full width */
+  text-align: left; /* Align text to left */
 }
 
 #answers-container input[type='radio'] {
@@ -118,9 +134,9 @@ button:hover {
 }
 
 #answers-container input[type='radio']:checked + label {
-  background-color: #4a90e2;
+  background-color: #007bff; /* Modern blue for selected option */
   color: #ffffff;
-  border-color: #4a90e2;
+  border-color: #007bff;
 }
 
 #results-screen {
@@ -128,8 +144,8 @@ button:hover {
 }
 
 #score-display {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.4rem;
+  font-weight: 600;
   margin-bottom: 20px;
 }
 
@@ -138,17 +154,51 @@ button:hover {
 }
 
 #review-container div {
-  background-color: #f4f6f8;
+  background-color: #f9f9f9; /* Light gray for review items */
   padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  border: 2px solid #d1d9e6;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  border: 1px solid #dcdcdc;
 }
 
 #restart-quiz {
-  background-color: #ff5c5c;
+  background-color: #dc3545; /* Bootstrap red color */
+  color: #ffffff;
 }
 
 #restart-quiz:hover {
-  background-color: #e04b4b;
+  background-color: #c82333; /* Darker red on hover */
+}
+
+.quiz-option {
+  display: inline-block;
+  background-color: #007bff; /* Matching blue color */
+  color: white; /* White text */
+  padding: 12px 24px;
+  margin: 8px; /* Adjusted margin for consistent spacing */
+  border: none;
+  border-radius: 4px; /* More subtle rounded corners */
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.quiz-option:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.03); /* Slightly larger button on hover */
+}
+
+.quiz-option:active {
+  background-color: #004494; /* Even darker blue when clicked */
+  transform: scale(0.98); /* Simulate press effect */
+}
+
+.quiz-option:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3); /* Soft blue shadow for focus */
+}
+
+.quiz-option.selected {
+  background-color: #ffc107; /* Warm yellow for selection */
+  color: #333; /* Dark text for better readability */
 }

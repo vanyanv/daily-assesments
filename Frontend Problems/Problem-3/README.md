@@ -8,7 +8,7 @@ The Interactive Quiz Application is a web-based quiz game that tests users' know
 
 ### Core Functionality
 
-- [ ] **Quiz Setup:**
+- [x] **Quiz Setup:**
 
   - Allow users to select a quiz category and difficulty level from dropdown menus.
   - Fetch quiz questions from an external API (e.g., Open Trivia Database).
