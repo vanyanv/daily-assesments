@@ -47,6 +47,8 @@ const setCategories = (array) => {
   });
 };
 
+const checkAnswer = (selectedAnswer, currentAnswer) => {};
+
 const displayQuizScreen = () => {
   const setupScreen = document.getElementById('setup-screen');
   const quizScreen = document.getElementById('quiz-screen');
@@ -56,25 +58,54 @@ const displayQuizScreen = () => {
 
 //function to show current quiz
 const displayQuiz = (array) => {
-  const currentQuestion = array[0];
-  console.log(currentQuestion);
-  const options = currentQuestion.options;
-  const questionContainer = document.getElementById('question-container');
-  const answersContainer = document.getElementById('answers-container');
+  let currentIndex = 0;
+  const userAnswers = [];
+  let userAnswer = '';
+  // Function to display the current question and options
+  const displayCurrentQuestion = () => {
+    const currentQuestion = array[currentIndex];
+    const questionContainer = document.getElementById('question-container');
+    const answersContainer = document.getElementById('answers-container');
+    const currentAnswer = currentQuestion.correctAnswer;
+    let userAnswer = '';
+    // Clear previous question and options
+    questionContainer.textContent = '';
+    answersContainer.innerHTML = '';
 
-  questionContainer.textContent = currentQuestion.question;
-  options.forEach((option, index) => {
-    const button = document.createElement('button');
-    button.textContent = option;
-    button.className = 'quiz-option';
-    button.addEventListener('click', () =>
-      handleAnswerSelection(button, option, index)
+    // Display the current question
+    questionContainer.textContent = currentQuestion.question.replace(
+      /[^a-zA-Z0-9 ]/g,
+      ''
     );
-    answersContainer.appendChild(button);
+
+    // Display the options
+    currentQuestion.options.forEach((option, index) => {
+      const button = document.createElement('button');
+      button.textContent = option.replace(/[^a-zA-Z0-9 ]/g, '');
+      button.className = 'quiz-option';
+      button.addEventListener('click', (textContent) => {
+        userAnswer = textContent;
+        handleAnswerSelection(button, option, index);
+      });
+      answersContainer.appendChild(button);
+    });
+  };
+
+  displayCurrentQuestion();
+
+  const submitButton = document.getElementById('submit-answer');
+  submitButton.addEventListener('click', function (event) {
+    //check if answer is correct
+    console.log(userAnswer);
+
+    currentIndex++;
+    if (currentIndex < array.length) {
+      displayCurrentQuestion();
+    } else {
+      //once quiz is finished to display answers
+    }
   });
 };
-
-//need to create a function that goes thru each question
 
 const handleAnswerSelection = (button, selectedOption, index) => {
   const allBttons = document.querySelectorAll('.quiz-option');
