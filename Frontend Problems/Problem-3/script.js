@@ -61,13 +61,13 @@ const displayQuiz = (array) => {
   let currentIndex = 0;
   const userAnswers = [];
   let userAnswer = '';
+  let currentAnswer = '';
   // Function to display the current question and options
   const displayCurrentQuestion = () => {
     const currentQuestion = array[currentIndex];
     const questionContainer = document.getElementById('question-container');
     const answersContainer = document.getElementById('answers-container');
-    const currentAnswer = currentQuestion.correctAnswer;
-    let userAnswer = '';
+
     // Clear previous question and options
     questionContainer.textContent = '';
     answersContainer.innerHTML = '';
@@ -83,8 +83,11 @@ const displayQuiz = (array) => {
       const button = document.createElement('button');
       button.textContent = option.replace(/[^a-zA-Z0-9 ]/g, '');
       button.className = 'quiz-option';
-      button.addEventListener('click', (textContent) => {
-        userAnswer = textContent;
+      button.addEventListener('click', () => {
+        userAnswer = option;
+
+        currentAnswer = currentQuestion.correctAnswer;
+
         handleAnswerSelection(button, option, index);
       });
       answersContainer.appendChild(button);
@@ -94,10 +97,16 @@ const displayQuiz = (array) => {
   displayCurrentQuestion();
 
   const submitButton = document.getElementById('submit-answer');
-  submitButton.addEventListener('click', function (event) {
+  submitButton.addEventListener('click', function () {
     //check if answer is correct
+    console.log('buttonClicked');
+    console.log('CHECKING ANSWERS');
     console.log(userAnswer);
-
+    console.log(currentAnswer);
+    console.log('Check', userAnswer === currentAnswer);
+    userAnswers.push(userAnswer === currentAnswer);
+    console.log(userAnswers);
+    submitButton.classList.add('hidden');
     currentIndex++;
     if (currentIndex < array.length) {
       displayCurrentQuestion();
