@@ -47,7 +47,16 @@ const setCategories = (array) => {
   });
 };
 
-const checkAnswer = (selectedAnswer, currentAnswer) => {};
+const checkAnswer = (selectedAnswer, currentAnswer) => {
+  //check if answer is correct
+  console.log('buttonClicked');
+  console.log('CHECKING ANSWERS');
+  console.log(selectedAnswer);
+  console.log(currentAnswer);
+  console.log('Check', selectedAnswer === currentAnswer);
+
+  return selectedAnswer === currentAnswer;
+};
 
 const displayQuizScreen = () => {
   const setupScreen = document.getElementById('setup-screen');
@@ -62,6 +71,8 @@ const displayQuiz = (array) => {
   const userAnswers = [];
   let userAnswer = '';
   let currentAnswer = '';
+  let progress = 0;
+
   // Function to display the current question and options
   const displayCurrentQuestion = () => {
     const currentQuestion = array[currentIndex];
@@ -73,15 +84,16 @@ const displayQuiz = (array) => {
     answersContainer.innerHTML = '';
 
     // Display the current question
-    questionContainer.textContent = currentQuestion.question.replace(
-      /[^a-zA-Z0-9 ]/g,
-      ''
-    );
+    questionContainer.textContent = currentQuestion.question
+      .replace(/[^a-zA-Z0-9 ]/g, '')
+      .replace(/039/g, "'")
+      .replace(/quot/g, '"');
 
     // Display the options
     currentQuestion.options.forEach((option, index) => {
       const button = document.createElement('button');
       button.textContent = option.replace(/[^a-zA-Z0-9 ]/g, '');
+
       button.className = 'quiz-option';
       button.addEventListener('click', () => {
         userAnswer = option;
@@ -98,24 +110,33 @@ const displayQuiz = (array) => {
 
   const submitButton = document.getElementById('submit-answer');
   submitButton.addEventListener('click', function () {
-    //check if answer is correct
-    console.log('buttonClicked');
-    console.log('CHECKING ANSWERS');
-    console.log(userAnswer);
-    console.log(currentAnswer);
-    console.log('Check', userAnswer === currentAnswer);
-    userAnswers.push(userAnswer === currentAnswer);
+    const progressBar = document.getElementById('progress-bar');
+    userAnswers.push(checkAnswer(userAnswer, currentAnswer));
     console.log(userAnswers);
     submitButton.classList.add('hidden');
+    progressBar.style.width = progress + '%';
+    progress += 10;
     currentIndex++;
     if (currentIndex < array.length) {
       displayCurrentQuestion();
     } else {
       //once quiz is finished to display answers
+      displayResults(userAnswers);
     }
   });
 };
 
+const displayResults = (correctAnswers) => {
+  const resultsScreen = document.getElementById('results-screen');
+  const quizScreen = document.getElementById('quiz-screen');
+  const scoreDisplay = document.getElementById('score-display');
+  quizScreen.classList.add('hidden');
+  resultsScreen.classList.remove('hidden');
+  //array for correct answers
+  const score = correctAnswers.filter((answer) => answer === true);
+  scoreDisplay.textContent = `${score.length} / ${correctAnswers.length}`;
+};
+//show what button is being selected
 const handleAnswerSelection = (button, selectedOption, index) => {
   const allBttons = document.querySelectorAll('.quiz-option');
   const submitButton = document.getElementById('submit-answer');
@@ -144,7 +165,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     console.log(quizQuestions);
     displayQuizScreen();
 
-    //display the quiz once data has been pouplated
+    //display the quiz once data has been populated
     if (quizQuestions.length > 0) {
       displayQuiz(quizQuestions);
     }
